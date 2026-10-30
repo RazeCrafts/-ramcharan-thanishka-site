@@ -1,0 +1,179 @@
+/**
+ * Brand theme — Romantic purple & red cuties aesthetic
+ * Replaces the near-black ink theme with burgundy, purple, pink, and cream.
+ */
+@theme {
+  --color-ink-900: #1a0a1e;
+  --color-ink-800: #1e0d24;
+  --color-ink-700: #24112b;
+  --color-ink-600: #2a1432;
+  --color-ink-500: #30183a;
+
+  --color-burgundy-400: #a63d4f;
+  --color-burgundy-500: #72212f;
+  --color-burgundy-600: #4e1620;
+  --color-burgundy-700: #2b0a14;
+
+  --color-purple-400: #a78bfa;
+  --color-purple-500: #8b5cf6;
+  --color-purple-600: #7c3aed;
+  --color-purple-700: #6b21a8;
+
+  --color-red-400: #fb7185;
+  --color-red-500: #f43f5e;
+  --color-red-600: #e11d48;
+  --color-pink-500: #f472b6;
+
+  --color-paper-50: #fdf2f8;
+  --color-paper-100: #fce7f3;
+  --color-paper-200: #fbcfe8;
+
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.5rem;
+
+  --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px -12px rgba(114, 33, 47, 0.35);
+  --shadow-pink: 0 0 40px -12px rgba(244, 114, 182, 0.35);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-bounce2: bounce2 4s ease-in-out infinite;
+  --animate-fadeIn: fadeIn 0.6s ease-out forwards;
+  --animate-slideUp: slideUp 0.7s ease-out forwards;
+  --animate-roll: roll 12s linear infinite;
+  --animate-bounce: bounce 3s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(2deg); }
+  66% { transform: translateY(-8px) rotate(-2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes roll {
+  0% { transform: rotate(0deg) translateX(-150px); }
+  100% { transform: rotate(1080deg) translateX(110vw); }
+}
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "ui-monospace", monospace;
+
+  --color-background: #1a0a1e;
+  --color-foreground: #fce7f3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 25% 25%, rgba(114, 33, 47, 0.25), transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 61, 246, 0.15), transparent 50%),
+    #1a0a1e;
+  color: #fce7f3;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Selection highlight */
+::selection {
+  background: #a63d4f;
+  color: #fff;
+}
+
+/* Focus indicators for accessibility */
+:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-hover {
+  transition: transform 0.35s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(166, 61, 79, 0.5);
+  box-shadow: var(--shadow-soft);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1a0a1e;
+}
+::-webkit-scrollbar-thumb {
+  background: #a63d4f;
+  border-radius: 6px;
+  border: 2px solid #1a0a1e;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fb7185;
+}
+
+/* Utility: text balance for headings */
+.text-balance {
+  text-wrap: balance;
+}

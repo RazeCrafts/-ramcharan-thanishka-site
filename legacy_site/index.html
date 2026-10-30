@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramcharan &amp; Thanishka 💜</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --purple-dark: #4b126b;
+    --purple: #7b2cbf;
+    --purple-light: #a259ff;
+    --magenta: #d63384;
+    --bg: #0a0514;
+    --card: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --text: #ffffff;
+    --text-dim: #c9b8e3;
+    --glass: rgba(255,255,255,0.03);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* -------- Background glow -------- */
+  .glow {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(123,44,191,0.20), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(214,51,132,0.16), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(162,89,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  /* -------- Scroll reveal -------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal.delay-1 { transition-delay: 0.15s; }
+  .reveal.delay-2 { transition-delay: 0.3s; }
+  .reveal.delay-3 { transition-delay: 0.45s; }
+
+  /* -------- Rolling Panda -------- */
+  .panda {
+    position: fixed;
+    bottom: 12vh;
+    left: -140px;
+    z-index: 60;
+    font-size: 64px;
+    pointer-events: none;
+    user-select: none;
+    will-change: transform, left;
+    animation: rollPanda 16s linear infinite;
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));
+  }
+
+  @keyframes rollPanda {
+    0%   { left: -160px; transform: rotate(0deg) translateY(0); }
+    12%  { transform: rotate(-18deg) translateY(-10px); }
+    24%  { transform: rotate(-36deg) translateY(0); }
+    36%  { transform: rotate(-50deg) translateY(8px); }
+    48%  { transform: rotate(-36deg) translateY(0); }
+    60%  { transform: rotate(-18deg) translateY(-10px); }
+    72%  { transform: rotate(0deg) translateY(0); }
+    100% { left: 100vw; transform: rotate(1080deg) translateY(0); }
+  }
+
+  .panda .bamboo {
+    display: inline-block;
+    animation: munch 1.2s ease-in-out infinite alternate;
+    margin-left: 10px;
+    font-size: 0.85em;
+  }
+
+  @keyframes munch {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(14deg) scale(1.15); }
+  }
+
+  /* -------- Nav -------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    padding: 1rem 5%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(10,5,20,0.7);
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #a259ff, #d63384);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s, transform 0.2s;
+  }
+  .nav-links a:hover { color: #fff; transform: translateY(-1px); }
+
+  /* -------- Hero -------- */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    letter-spacing: 3px;
+    color: #fff;
+    filter: drop-shadow(0 0 25px rgba(162,89,255,0.5));
+    background: linear-gradient(135deg, #fff 0%, #a259ff 50%, #d63384 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero .names {
+    font-size: 1.7rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .counter {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #a259ff, #d63384);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .dates {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+  .dates b { color: #a259ff; }
+
+  .tomatooo {
+    font-size: clamp(1.5rem, 5vw, 2.4rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ff4d94, #d63384);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 18px rgba(214,51,132,0.6));
+    animation: pulseLove 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseLove {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.07); opacity: 0.92; }
+  }
+
+  .muah-section {
+    margin-bottom: 2.5rem;
+  }
+  .muah-output {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #d63384;
+    font-family: monospace;
+    min-height: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .muah-count {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+  }
+  .muah-btn {
+    padding: 1rem 2.4rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #a259ff, #7b2cbf);
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(162,89,255,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .muah-btn:active { transform: scale(0.95); }
+  .muah-btn:hover { box-shadow: 0 15px 40px rgba(162,89,255,0.5); }
+
+  .scroll-hint {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  /* -------- Sections -------- */
+  section { padding: 90px 5%; position: relative; }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #a259ff, #d63384);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .section-subtitle {
+    text-align: center;
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* -------- Glass cards -------- */
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    transition: transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .glass-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(162,89,255,0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  /* -------- Gallery -------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/5;
+    min-width: 260px;
+  }
+
+  .gallery-item img, .gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.04); }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0.7rem 0.9rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    font-size: 0.8rem;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .gallery-desc {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    text-align: center;
+    padding: 0 0.6rem;
+  }
+
+  .gallery-item::after {
+    content: '👉 tap to open';
+    position: absolute;
+    bottom: 2.8rem; left: 50%; transform: translateX(-50%);
+    color: #fff; font-size: 0.75rem; font-weight: 600;
+    opacity: 0; transition: opacity 0.3s;
+    background: rgba(0,0,0,0.5); padding: 0.2rem 0.6rem; border-radius: 14px;
+  }
+  .gallery-item:hover::after { opacity: 1; }
+
+  /* -------- Goals -------- */
+  .goals {
+    max-width: 940px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .col { background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: 28px; padding: 2.5rem 1.5rem; }
+  .col h3 { text-align: center; font-size: 1.4rem; margin-bottom: 1.5rem; color: #fff; }
+  .done h3 { color: #a259ff; }
+  .todo h3 { color: #d63384; }
+  .event-list { list-style: none; display: grid; gap: 1rem; }
+  .event-item {
+    padding: 1rem 1.3rem;
+    background: rgba(0,0,0,0.2);
+    border-radius: 18px;
+    border-left: 4px solid;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .done .event-item { border-left-color: #a259ff; }
+  .todo .event-item { border-left-color: #d63384; }
+  .event-text { color: var(--text-dim); font-size: 0.98rem; }
+  .event-chip {
+    font-size: 0.78rem; font-weight: 900; padding: 0.22rem 0.75rem; border-radius: 14px;
+    background: rgba(255,255,255,0.08); color: #fff; letter-spacing: 0.5px;
+  }
+
+  /* -------- Love message -------- */
+  .love-msg {
+    text-align: center;
+    padding: 90px 5%;
+    background: radial-gradient(circle at center, rgba(162,89,255,0.12), transparent 70%);
+  }
+  .love-msg h2 {
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 0.8rem;
+    color: #fff;
+  }
+  .love-msg p.big {
+    font-size: 1.6rem;
+    color: #ff4d94;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 28px rgba(214,51,132,0.5);
+  }
+
+  /* -------- Game -------- */
+  .game-section {
+    text-align: center;
+    padding: 90px 5%;
+  }
+  .game-section .section-title { margin-bottom: 1rem; }
+  .game-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+  #gameCanvas {
+    background: linear-gradient(to bottom, #5c3aa6, #0a0514);
+    border: 2px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .game-ui {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  .game-score {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #a259ff;
+    margin-bottom: 0.5rem;
+    display: none;
+  }
+  .game-controls {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* -------- Footer -------- */
+  footer {
+    padding: 4rem 1rem 2rem;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  /* -------- Responsive -------- */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .goals { grid-template-columns: 1fr; }
+    .gallery-item { min-width: 100%; }
+    .panda { font-size: 44px; bottom: 10vh; left: -120px; animation: rollPanda 14s linear infinite; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<div class="panda">
+  🐼<span class="bamboo">🎋</span>
+</div>
+
+<nav>
+  <div class="logo">Ramcharan<span>💜</span>Thanishka</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#game">Panda Run</a></li>
+    <li><a href="#love">Love</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="reveal delay-1">
+    <h1>HEHHEHEHHEE</h1>
+  </div>
+  <div class="reveal delay-2">
+    <div class="names">Ramcharan and Thanishka</div>
+    <div class="counter" id="counter">0</div>
+    <div class="dates">
+      <b>Started dating:</b> July 20th &nbsp;|&nbsp; <b>First kiss:</b> August 4th
+    </div>
+    <div class="tomatooo">Love u soo much my cute little Tomatooo 💋</div>
+    <div class="muah-section">
+      <div class="muah-output" id="muahOut"></div>
+      <div class="muah-count" id="muahCount">muahahs sent: 0</div>
+      <button class="muah-btn" id="muahBtn">Send a muahah 💋</button>
+    </div>
+  </div>
+  <div class="reveal delay-3">
+    <div class="scroll-hint">scroll down ↓</div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="reveal delay-1">
+    <div class="section-title">Our Gallery</div>
+    <div class="section-subtitle">Tap any picture to open it</div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<section id="goals">
+  <div class="reveal delay-1">
+    <div class="section-title">Goals — Done &amp; To-Go</div>
+    <div class="section-subtitle">What we've crushed and what's coming next</div>
+  </div>
+  <div class="goals reveal delay-2">
+    <div class="col done">
+      <h3>✅ Done</h3>
+      <ul class="event-list">
+        <li class="event-item"><span class="event-text">Started dating — July 20th</span><span class="event-chip">Done</span></li>
+        <li class="event-item"><span class="event-text">First kiss — August 4th</span><span class="event-chip">Done</span></li>
+        <li class="event-item"><span class="event-text">3 months together</span><span class="event-chip">Done</span></li>
+        <li class="event-item"><span class="event-text">Made this website for Thanishka</span><span class="event-chip">Done</span></li>
+      </ul>
+    </div>
+    <div class="col todo">
+      <h3>🎯 To-Go</h3>
+      <ul class="event-list">
+        <li class="event-item"><span class="event-text">6 months together</span><span class="event-chip">Coming</span></li>
+        <li class="event-item"><span class="event-text">1 year together ❤️</span><span class="event-chip">1 yr to go</span></li>
+        <li class="event-item"><span class="event-text">More memories, Ramcharan &amp; Thanishka</span><span class="event-chip">Always</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="game-section" id="game">
+  <div class="game-wrap">
+    <div class="reveal delay-1">
+      <div class="section-title">Panda Run 🐼</div>
+    </div>
+    <div class="game-score reveal delay-2" id="gameScore">Score: 0</div>
+    <canvas id="gameCanvas" width="500" height="700"></canvas>
+    <div class="game-controls reveal delay-3">
+      Tap or SPACE to jump • DOWN/S to roll • LEFT/RIGHT to switch lanes<br>
+      Roll under bamboo • Jump over walls
+    </div>
+  </div>
+</section>
+
+<section class="love-msg reveal">
+  <h2>No matter the upps and downs</h2>
+  <p class="big">love u babbyy!!! 💜</p>
+</section>
+
+<footer>
+  Ramcharan &amp; Thanishka &nbsp;|&nbsp; Started July 20th &nbsp;|&nbsp; First kiss August 4th
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" id="lightboxClose">✕</div>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<script>
+  /* ---------- Scroll reveal ---------- */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ---------- Live counter ---------- */
+  const START = new Date('2026-07-20T00:00:00');
+  const counterEl = document.getElementById('counter');
+  function updateCounter() {
+    const now = new Date();
+    const diffMs = now - START;
+    const totalSeconds = Math.floor(diffMs / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+    counterEl.textContent = `${days} days, ${hours}h ${mins}m ${secs}s together`;
+  }
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  /* ---------- Muah counter ---------- */
+  let muahCount = 0;
+  const muahOut = document.getElementById('muahOut');
+  const muahCountEl = document.getElementById('muahCount');
+  const muahBtn = document.getElementById('muahBtn');
+
+  function burstConfetti() {
+    const colors = ['#a259ff', '#d63384', '#f48fb1', '#c39bd3', '#fff'];
+    for (let i = 0; i < 40; i++) {
+      const el = document.createElement('div');
+      el.style.position = 'fixed';
+      el.style.left = '50%';
+      el.style.top = '40%';
+      el.style.width = '8px';
+      el.style.height = '8px';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.borderRadius = '2px';
+      el.style.pointerEvents = 'none';
+      el.style.zIndex = 9999;
+      document.body.appendChild(el);
+      const angle = Math.random() * Math.PI * 2;
+      const velocity = 10 + Math.random() * 20;
+      const tx = Math.cos(angle) * velocity * 10;
+      const ty = Math.sin(angle) * velocity * 10;
+      el.animate([
+        { transform: 'translate(0,0) scale(1)', opacity: 1 },
+        { transform: `translate(${tx}px,${ty}px) scale(0)`, opacity: 0 }
+      ], { duration: 600 + Math.random() * 400, easing: 'cubic-bezier(0,0,0.32,1)' });
+      setTimeout(() => el.remove(), 1100);
+    }
+  }
+
+  muahBtn.addEventListener('click', () => {
+    muahCount++;
+    const spam = 'muahah '.repeat(Math.min(muahCount, 30));
+    muahOut.textContent = spam;
+    muahCountEl.textContent = `muahahs sent: ${muahCount}`;
+    burstConfetti();
+  });
+
+  /* ---------- Gallery ---------- */
+  const gallery = [
+    { src: '20260118_171232(0).jpg', date: 'Jan 18, 2026', desc: 'Early days together 💜' },
+    { src: '20260118_175223.jpg', date: 'Jan 18, 2026', desc: 'Our first memories' },
+    { src: 'IMG_20260226_223416_276.jpg', date: 'Feb 26, 2026', desc: 'February moments' },
+    { src: '20260807_144311.jpg', date: 'Aug 7, 2026', desc: 'August vibes' },
+    { src: '20260819_174906.jpg', date: 'Aug 19, 2026', desc: 'Before the kiss' },
+    { src: '20260819_185742.mp4', date: 'Aug 19, 2026', desc: 'Our first kiss video 💋' },
+    { src: '20260819_185742 (1).mp4', date: 'Aug 19, 2026', desc: 'First kiss angle 2' },
+    { src: '20260819_183920.mp4', date: 'Aug 19, 2026', desc: 'Another kiss moment' },
+    { src: '20260819_191050.jpg', date: 'Aug 19, 2026', desc: 'After the kiss' },
+    { src: '20260819_192806.jpg', date: 'Aug 19, 2026', desc: 'Smile for me baby' },
+    { src: '20260819_192821.jpg', date: 'Aug 19, 2026', desc: 'Cute moment' },
+    { src: '20260819_192821 (1).jpg', date: 'Aug 19, 2026', desc: 'More cute' },
+    { src: '20260819_195004.jpg', date: 'Aug 19, 2026', desc: 'Evening together' },
+    { src: '20260819_195021.jpg', date: 'Aug 19, 2026', desc: 'Night memories' },
+    { src: '20260825_155359.jpg', date: 'Aug 25, 2026', desc: 'Late August' },
+    { src: 'IMG-20260819-WA0005.jpg', date: 'Aug 19, 2026', desc: 'WhatsApp memory' },
+    { src: '42a962f7-1c7d-46bc-857e-f3144a1bb327.png', date: 'Special', desc: 'A special picture 💜' },
+    { src: '20260904_145749.jpg', date: 'Sep 4, 2026', desc: 'September' },
+    { src: 'IMG-20260904-WA0024.jpg', date: 'Sep 4, 2026', desc: 'Sep 4th' },
+    { src: 'IMG-20260904-WA0034.jpg', date: 'Sep 4, 2026', desc: 'Sep 4th part 2' },
+    { src: '20260908_163419.jpg', date: 'Sep 8, 2026', desc: 'Sep 8th' },
+    { src: '20260908_163446.jpg', date: 'Sep 8, 2026', desc: 'Sep 8th part 2' },
+    { src: '20260908_163728.jpg', date: 'Sep 8, 2026', desc: 'Sep 8th part 3' },
+    { src: '20260923_133733.jpg', date: 'Sep 23, 2026', desc: 'Late September' },
+    { src: 'IMG-20261020-WA0180.jpg', date: 'Oct 20, 2026', desc: 'October' },
+    { src: '20261026_141302.jpg', date: 'Oct 26, 2026', desc: 'Late October' },
+    { src: 'N.jpg', date: 'Date unknown', desc: 'Mystery pic 💜' },
+    { src: 'Snapchat-33263674.jpg', date: 'Date unknown', desc: 'Snapchat memory' }
+  ];
+
+  function assetUrl(src) {
+    return 'assets/' + src;
+  }
+
+  const grid = document.getElementById('galleryGrid');
+  gallery.forEach((item, i) => {
+    const isVideo = item.src.toLowerCase().endsWith('.mp4');
+    const el = document.createElement('div');
+    el.className = 'gallery-item';
+    if (isVideo) {
+      el.innerHTML = `
+        <video src="${assetUrl(item.src)}" muted loop playsinline class="loaded"></video>
+        <div class="gallery-caption">${item.date}</div>
+        <div class="gallery-desc">${item.desc}</div>
+      `;
+    } else {
+      el.innerHTML = `
+        <img src="${assetUrl(item.src)}" alt="Memory ${i+1}">
+        <div class="gallery-caption">${item.date}</div>
+        <div class="gallery-desc">${item.desc}</div>
+      `;
+    }
+    el.addEventListener('click', () => openLightbox(i));
+    grid.appendChild(el);
+  });
+
+  /* ---------- Lightbox ---------- */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  let currentIdx = 0;
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    const item = gallery[idx];
+    const isVideo = item.src.toLowerCase().endsWith('.mp4');
+    if (isVideo) {
+      lightboxImg.innerHTML = `<video src="${assetUrl(item.src)}" controls autoplay muted playsinline style="max-width:90vw;max-height:70vh;border-radius:16px;"></video>`;
+    } else {
+      lightboxImg.innerHTML = `<img src="${assetUrl(item.src)}" style="max-width:90vw;max-height:70vh;border-radius:16px;">`;
+    }
+    lightboxCaption.textContent = `${item.date} — ${item.desc}`;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxImg.innerHTML = '';
+  }
+
+  function showImage(idx) {
+    currentIdx = (idx + gallery.length) % gallery.length;
+    openLightbox(currentIdx);
+  }
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
+    if (e.key === 'ArrowRight') showImage(currentIdx + 1);
+  });
+
+  /* ---------- Nav highlight ---------- */
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) cur = s.getAttribute('id');
+    });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? '#fff' : 'var(--text-dim)';
+    });
+  });
+
+  /* ---------- Panda Run game (fixed) ---------- */
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('gameScore');
+  scoreEl.style.display = 'block';
+
+  let gameActive = true;
+  let score = 0;
+  let frames = 0;
+  let speed = 3.5;
+
+  const laneWidth = 150;
+  const lanes = [canvas.width/2 - laneWidth, canvas.width/2, canvas.width/2 + laneWidth];
+
+  const panda = {
+    lane: 1,
+    x: lanes[1],
+    y: canvas.height - 110,
+    w: 56,
+    h: 56,
+    vy: 0,
+    gravity: 0.55,
+    jump: -14,
+    roll: false,
+    rollTimer: 0,
+    draw() {
+      ctx.save();
+      ctx.translate(this.x + this.w/2, this.y + this.h/2);
+      // shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.3)';
+      ctx.beginPath();
+      ctx.ellipse(0, this.h/2 + 4, this.w*0.6, 8, 0, 0, Math.PI*2);
+      ctx.fill();
+      // body
+      ctx.fillStyle = '#0a0a0a';
+      ctx.beginPath();
+      ctx.arc(0, 0, this.w/2, 0, Math.PI*2);
+      ctx.fill();
+      // belly
+      ctx.fillStyle = '#e8e8e8';
+      ctx.beginPath();
+      ctx.ellipse(0, 6, this.w*0.5, this.h*0.45, 0, 0, Math.PI*2);
+      ctx.fill();
+      // ears
+      ctx.fillStyle = '#0a0a0a';
+      ctx.beginPath();
+      ctx.arc(-20, -24, 14, 0, Math.PI*2);
+      ctx.arc(20, -24, 14, 0, Math.PI*2);
+      ctx.fill();
+      // eye patches
+      ctx.fillStyle = '#0a0a0a';
+      ctx.beginPath();
+      ctx.ellipse(-16, -2, 9, 11, 0, 0, Math.PI*2);
+      ctx.ellipse(16, -2, 9, 11, 0, 0, Math.PI*2);
+      ctx.fill();
+      // eyes
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(-16, -2, 3.5, 0, Math.PI*2);
+      ctx.arc(16, -2, 3.5, 0, Math.PI*2);
+      ctx.fill();
+      // nose
+      ctx.fillStyle = '#444';
+      ctx.beginPath();
+      ctx.arc(0, 5, 4.5, 0, Math.PI*2);
+      ctx.fill();
+      // mouth
+      ctx.strokeStyle = '#444';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, 10, 5, 0, Math.PI);
+      ctx.stroke();
+      ctx.restore();
+    },
+    update() {
+      const targetX = lanes[this.lane];
+      this.x += (targetX - this.x) * 0.22;
+      if (this.roll) {
+        this.rollTimer--;
+        if (this.rollTimer <= 0) this.roll = false;
+        this.h = 34;
+        this.y = canvas.height - 60 - this.h;
+      } else {
+        this.h = 56;
+        this.vy += this.gravity;
+        this.y += this.vy;
+        const groundY = canvas.height - 60 - this.h;
+        if (this.y > groundY) {
+          this.y = groundY;
+          this.vy = 0;
+        }
+      }
+      if (this.y < 0) { this.y = 0; this.vy = 0; }
+    }
+  };
+
+  const obstacles = [];
+  const obsW = 52;
+  const obsH = 70;
+
+  function spawnObstacle() {
+    const lane = Math.floor(Math.random() * 3);
+    // bamboo = low (roll under), wall = high (jump over)
+    const type = Math.random() < 0.55 ? 'bamboo' : 'wall';
+    const h = type === 'bamboo' ? 55 : 85;
+    obstacles.push({ x: canvas.width + 80, lane, type, h, w: obsW, passed: false });
+  }
+
+  function drawBamboo(x, y, w, h) {
+    ctx.save();
+    ctx.translate(x + w/2, y + h/2);
+    // stalk
+    ctx.fillStyle = '#4ade80';
+    ctx.fillRect(-w/2, -h/2, w, h);
+    // darker segments
+    ctx.fillStyle = '#22c55e';
+    ctx.fillRect(-w/2, -h/2 + 16, w, 5);
+    ctx.fillRect(-w/2, -h/2 + 34, w, 5);
+    ctx.fillRect(-w/2, -h/2 + 52, w, 5);
+    // rings
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-w/2, -h/2 + 16); ctx.lineTo(w/2, -h/2 + 16);
+    ctx.moveTo(-w/2, -h/2 + 34); ctx.lineTo(w/2, -h/2 + 34);
+    ctx.moveTo(-w/2, -h/2 + 52); ctx.lineTo(w/2, -h/2 + 52);
+    ctx.stroke();
+    // leaves
+    ctx.fillStyle = '#4ade80';
+    ctx.fillRect(-w/2 - 10, -h/2 - 14, 14, 7);
+    ctx.fillRect(w/2 - 4, -h/2 - 14, 14, 7);
+    ctx.fillRect(-w/2 - 6, -h/2 + 8, 12, 6);
+    ctx.fillRect(w/2 - 6, -h/2 + 8, 12, 6);
+    ctx.restore();
+  }
+
+  function drawObstacles() {
+    obstacles.forEach(o => {
+      if (o.type === 'bamboo') {
+        drawBamboo(o.x, canvas.height - 60 - o.h, o.w, o.h);
+      } else {
+        ctx.save();
+        ctx.translate(o.x + o.w/2, canvas.height - 60 - o.h/2);
+        ctx.fillStyle = '#ef4444';
+        ctx.fillRect(-o.w/2, -o.h/2, o.w, o.h);
+        ctx.strokeStyle = '#7f1d1d';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(-o.w/2, -o.h/2, o.w, o.h);
+        ctx.restore();
+      }
+    });
+  }
+
+  function updateObstacles() {
+    if (frames % 100 === 0) spawnObstacle();
+    for (let i = obstacles.length - 1; i >= 0; i--) {
+      obstacles[i].x -= speed;
+      if (obstacles[i].x + obstacles[i].w < 0) {
+        obstacles.splice(i, 1);
+        continue;
+      }
+      if (!obstacles[i].passed && panda.x > obstacles[i].x + obstacles[i].w) {
+        obstacles[i].passed = true;
+        score++;
+        scoreEl.textContent = `Score: ${score}`;
+        if (score % 4 === 0) speed += 0.35;
+      }
+      // collision - only if same lane
+      const laneX = lanes[obstacles[i].lane];
+      const laneW = laneWidth * 0.62;
+      const pandaBottom = panda.y + panda.h;
+      const obsTop = canvas.height - 60 - obstacles[i].h;
+      if (Math.abs(panda.x - laneX) < laneW && pandaBottom > obsTop) {
+        // rolling passes under bamboo; jumping clears walls
+        if (obstacles[i].type === 'bamboo' && panda.roll) {
+          // safe pass under bamboo
+        } else {
+          gameActive = false;
+        }
+      }
+    }
+  }
+
+  function resetGame() {
+    panda.lane = 1;
+    panda.x = lanes[1];
+    panda.y = canvas.height - 110;
+    panda.vy = 0;
+    panda.roll = false;
+    panda.rollTimer = 0;
+    panda.h = 56;
+    obstacles.length = 0;
+    score = 0;
+    speed = 3.5;
+    frames = 0;
+    scoreEl.textContent = `Score: 0`;
+    gameActive = true;
+    loop();
+  }
+
+  function loop() {
+    if (!gameActive) {
+      ctx.fillStyle = 'rgba(0,0,0,0.6)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#fff';
+      ctx.font = '26px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Game Over! Tap to restart', canvas.width/2, canvas.height/2 - 25);
+      ctx.font = '17px sans-serif';
+      ctx.fillStyle = '#c9b8e3';
+      ctx.fillText(`Final Score: ${score}`, canvas.width/2, canvas.height/2 + 10);
+      return;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ground
+    ctx.fillStyle = '#4b126b';
+    ctx.fillRect(0, canvas.height - 60, canvas.width, 60);
+    ctx.fillStyle = '#3a0e5a';
+    ctx.fillRect(0, canvas.height - 60, canvas.width, 8);
+    // lane lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.setLineDash([24, 24]);
+    ctx.beginPath();
+    ctx.moveTo(lanes[0], 0);
+    ctx.lineTo(lanes[0], canvas.height - 60);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(lanes[2], 0);
+    ctx.lineTo(lanes[2], canvas.height - 60);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    panda.update();
+    panda.draw();
+    updateObstacles();
+    drawObstacles();
+    frames++;
+    requestAnimationFrame(loop);
+  }
+
+  function jump() {
+    if (!gameActive) { resetGame(); return; }
+    if (!panda.roll && panda.y >= canvas.height - 60 - panda.h) {
+      panda.vy = panda.jump;
+    }
+  }
+
+  function roll() {
+    if (!gameActive || panda.roll) return;
+    panda.roll = true;
+    panda.rollTimer = 28;
+  }
+
+  canvas.addEventListener('click', () => {
+    if (!gameActive) { resetGame(); return; }
+    jump();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') { e.preventDefault(); jump(); }
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') { e.preventDefault(); roll(); }
+    if (e.code === 'ArrowLeft') { e.preventDefault(); panda.lane = Math.max(0, panda.lane - 1); }
+    if (e.code === 'ArrowRight') { e.preventDefault(); panda.lane = Math.min(2, panda.lane + 1); }
+  });
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  canvas.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: false });
+  canvas.addEventListener('touchend', (e) => {
+    if (!gameActive) { resetGame(); return; }
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 50) panda.lane = Math.min(2, panda.lane + 1);
+      else if (dx < -50) panda.lane = Math.max(0, panda.lane - 1);
+    } else {
+      if (dy < -50) jump();
+      else if (dy > 50) roll();
+    }
+  }, { passive: false });
+
+  loop();
+</script>
+
+</body>
+</html>
