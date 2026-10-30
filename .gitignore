@@ -56,3 +56,5 @@ next-env.d.ts
 *.mp4
 .deploy_*.json
 .vercel
+
+.env*

@@ -114,13 +114,11 @@ export default function PandaRoll() {
 
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // Ground
     ctx.fillStyle = "#4b126b";
     ctx.fillRect(0, CANVAS_HEIGHT - 60, CANVAS_WIDTH, 60);
     ctx.fillStyle = "#3a0e5a";
     ctx.fillRect(0, CANVAS_HEIGHT - 60, CANVAS_WIDTH, 8);
 
-    // Lane lines
     ctx.strokeStyle = "rgba(255,255,255,0.12)";
     ctx.setLineDash([24, 24]);
     ctx.beginPath();
@@ -133,7 +131,6 @@ export default function PandaRoll() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Panda physics
     const targetX = lanes[p.lane];
     p.x += (targetX - p.x) * 0.22;
     if (p.roll) {
@@ -155,11 +152,9 @@ export default function PandaRoll() {
       p.vy = 0;
     }
 
-    // Spawn
     framesRef.current++;
     if (framesRef.current % 100 === 0) spawnObstacle();
 
-    // Update & draw obstacles
     for (let i = obstaclesRef.current.length - 1; i >= 0; i--) {
       const o = obstaclesRef.current[i];
       o.x -= speedRef.current;
@@ -186,7 +181,6 @@ export default function PandaRoll() {
       }
     }
 
-    // Draw obstacles
     obstaclesRef.current.forEach((o) => {
       ctx.save();
       ctx.translate(o.x + o.w / 2, CANVAS_HEIGHT - 60 - o.h / 2);
@@ -217,7 +211,6 @@ export default function PandaRoll() {
       ctx.restore();
     });
 
-    // Draw panda
     ctx.save();
     ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
     ctx.fillStyle = "rgba(0,0,0,0.3)";
@@ -236,11 +229,6 @@ export default function PandaRoll() {
     ctx.beginPath();
     ctx.arc(-20, -24, 14, 0, Math.PI * 2);
     ctx.arc(20, -24, 14, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#0a0a0a";
-    ctx.beginPath();
-    ctx.ellipse(-16, -2, 9, 11, 0, 0, Math.PI * 2);
-    ctx.ellipse(16, -2, 9, 11, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.fillStyle = "#fff";
     ctx.beginPath();
@@ -289,18 +277,18 @@ export default function PandaRoll() {
   }, [gameActive, gameOver, jump, roll, switchLane, resetGame]);
 
   return (
-    <div className="min-h-[90vh] bg-ink-900 text-white px-6 py-12">
+    <div className="min-h-[90vh] bg-[#1a0a1e] text-white px-6 py-12">
       <div className="max-w-md mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-1">Panda Roll</h1>
-            <p className="text-gray-400 text-sm">An endless runner starring a rolling panda.</p>
+            <p className="text-paper-200 text-sm">An endless runner starring a rolling panda.</p>
           </div>
           <div className="flex gap-2 text-sm">
-            <span className="text-gray-400">Score</span>
+            <span className="text-paper-200/70">Score</span>
             <span className="font-mono font-bold text-white">{score}</span>
-            <span className="text-gray-500">•</span>
-            <span className="text-burgundy-400 font-mono font-bold">Best: {highScore}</span>
+            <span className="text-paper-200/50">•</span>
+            <span className="text-pink-500 font-mono font-bold">Best: {highScore}</span>
           </div>
         </div>
 
@@ -309,15 +297,15 @@ export default function PandaRoll() {
             ref={canvasRef}
             width={CANVAS_WIDTH}
             height={CANVAS_HEIGHT}
-            className="w-full max-w-md rounded-[2rem] border border-white/10 shadow-soft bg-gradient-to-b from-[#5c3aa6] to-[#070707]"
+            className="w-full max-w-md rounded-[2rem] border border-white/10 shadow-soft bg-gradient-to-b from-[#5c3aa6] to-[#1a0a1e]"
           />
           {!gameActive && gameOver ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 rounded-[2rem]">
               <p className="text-2xl font-bold text-white mb-2">Game Over</p>
-              <p className="text-gray-400 mb-6">Final score: {score}</p>
+              <p className="text-paper-200 mb-6">Final score: {score}</p>
               <button
                 onClick={resetGame}
-                className="px-8 py-3 bg-white text-ink-900 font-semibold rounded-full hover:bg-gray-200"
+                className="px-8 py-3 bg-white text-[#1a0a1e] font-semibold rounded-full hover:bg-paper-200 transition"
               >
                 Play again
               </button>
@@ -325,13 +313,13 @@ export default function PandaRoll() {
           ) : !gameActive ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-[2rem]">
               <p className="text-xl font-bold text-white mb-2">Panda Roll</p>
-              <p className="text-gray-400 text-sm mb-6 text-center max-w-xs">
+              <p className="text-paper-200 text-sm mb-6 text-center max-w-xs">
                 Tap or SPACE to jump • DOWN/S to roll • LEFT/RIGHT to switch lanes<br />
                 Roll under bamboo • Jump over walls
               </p>
               <button
                 onClick={resetGame}
-                className="px-8 py-3 bg-white text-ink-900 font-semibold rounded-full hover:bg-gray-200"
+                className="px-8 py-3 bg-white text-[#1a0a1e] font-semibold rounded-full hover:bg-paper-200 transition"
               >
                 Start
               </button>
@@ -339,7 +327,7 @@ export default function PandaRoll() {
           ) : null}
         </div>
 
-        <div className="mt-6 text-xs text-gray-500 text-center">
+        <div className="mt-6 text-xs text-paper-200/50 text-center">
           Keyboard: SPACE/↑ jump • ↓/S roll • ←/→ lanes
         </div>
       </div>

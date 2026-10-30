@@ -60,14 +60,14 @@ export default function Memories() {
   const [current, setCurrent] = useState<Frame | null>(null);
 
   return (
-    <div className="min-h-[90vh] bg-ink-900 text-white px-6 py-12">
+    <div className="min-h-[90vh] bg-[#1a0a1e] text-white px-6 py-12">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
           <div>
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-1">
               Memories
             </h1>
-            <p className="text-gray-400 text-sm">
+            <p className="text-paper-200 text-sm">
               A fixed set of our photographs and videos. New pictures are added
               by editing code, not through an upload form — ask me to add more
               and I'll drop them into the default set.
@@ -80,10 +80,7 @@ export default function Memories() {
           {DEFAULT_IMAGES.map((image) => (
             <div
               key={image.id}
-              className={`
-                relative rounded-xl overflow-hidden border border-white/5 bg-white/5 cursor-pointer
-                ${image.type === "video" ? "h-72 md:h-96" : "h-60 md:h-72"}
-              `}
+              className={`relative rounded-xl overflow-hidden border border-white/5 bg-white/5 cursor-pointer ${image.type === "video" ? "h-72 md:h-96" : "h-60 md:h-72"}`}
               onClick={() => {
                 setCurrent(image);
                 setOpen(true);
@@ -111,12 +108,8 @@ export default function Memories() {
                 />
               )}
               <div className="absolute bottom-3 left-3 right-3 p-3">
-                <p className="text-xs font-mono font-bold text-white/90 truncate">
-                  {image.date}
-                </p>
-                <p className="text-xs text-gray-400 truncate mt-1">
-                  {image.caption}
-                </p>
+                <p className="text-xs font-mono font-bold text-white/90 truncate">{image.date}</p>
+                <p className="text-xs text-paper-200 truncate mt-1">{image.caption}</p>
               </div>
             </div>
           ))}
@@ -125,43 +118,16 @@ export default function Memories() {
 
       {/* Lightbox */}
       {open && current && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-6"
-          onClick={() => {
-            setOpen(false);
-            setCurrent(null);
-          }}
-        >
-          <div
-            className="relative max-w-4xl max-h-[85vh] flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => {
-                setOpen(false);
-                setCurrent(null);
-              }}
-              className="absolute top-4 right-4 z-10 text-white text-xl hover:text-gray-300"
-            >
-              ✕
-            </button>
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-6" onClick={() => { setOpen(false); setCurrent(null); }}>
+          <div className="relative max-w-4xl max-h-[85vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => { setOpen(false); setCurrent(null); }} className="absolute top-4 right-4 z-10 text-white text-xl hover:text-gray-300">✕</button>
             {current.type === "video" ? (
-              <video
-                src={current.src}
-                controls
-                autoPlay
-                className="w-full max-h-[70vh] rounded-xl border border-white/10 object-contain"
-              />
+              <video src={current.src} controls autoPlay className="w-full max-h-[70vh] rounded-xl border border-white/10 object-contain" />
             ) : (
-              <Image
-                src={current.src}
-                alt={current.caption}
-                className="w-full max-h-[70vh] rounded-xl border border-white/10 object-contain"
-                sizes="90vw"
-              />
+              <Image src={current.src} alt={current.caption} className="w-full max-h-[70vh] rounded-xl border border-white/10 object-contain" sizes="90vw" />
             )}
             <div className="mt-6 text-center">
-              <p className="text-xs font-mono text-gray-400 mb-1">{current.date}</p>
+              <p className="text-xs font-mono text-paper-200 mb-1">{current.date}</p>
               <p className="text-white text-sm font-medium">{current.caption}</p>
             </div>
           </div>

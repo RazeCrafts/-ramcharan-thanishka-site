@@ -7,25 +7,25 @@ const AREAS = [
     title: "Our Story",
     description: "The milestones that define us — from the day we started dating to the years ahead.",
     href: "/our-story",
-    color: "text-a63d4f",
+    color: "text-burgundy-400",
   },
   {
     title: "Memories",
     description: "A gallery of our favorite photographs, each one saved with love.",
     href: "/memories",
-    color: "text-8b5cf6",
+    color: "text-purple-500",
   },
   {
     title: "Letters",
     description: "Notes and letters written for each other, saved and re-readable.",
     href: "/letters",
-    color: "text-fb7185",
+    color: "text-red-500",
   },
   {
     title: "Panda Roll",
     description: "A little endless-runner game starring a rolling panda. Playful, original, ours.",
     href: "/panda-roll",
-    color: "text-fce7f3",
+    color: "text-paper-100",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/our-story"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-ink-900 font-semibold rounded-full hover:bg-a63d4f hover:text-white transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-[#1a0a1e] font-semibold rounded-full hover:bg-a63d4f hover:text-white transition-all"
             >
               Start at the beginning
             </Link>
@@ -111,7 +111,7 @@ export default function Home() {
               />
               <div className="absolute bottom-6 left-6 right-6 p-4 bg-black/40 backdrop-blur rounded-xl border border-white/10">
                 <p className="text-sm font-medium text-white">August 19, 2026</p>
-                <p className="text-xs text-gray-400 mt-1">The day everything changed.</p>
+                <p className="text-xs text-paper-200 mt-1">The day everything changed.</p>
               </div>
             </div>
             <div className="text-left">

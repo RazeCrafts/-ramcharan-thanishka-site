@@ -32,21 +32,21 @@ export default async function OurStory() {
   const milestones = await storage.listMilestones();
 
   return (
-    <div className="min-h-[90vh] bg-ink-900 text-white">
+    <div className="min-h-[90vh] bg-[#1a0a1e] text-white">
       <div className="max-w-4xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
-          <span className="text-purple-400 text-sm font-semibold uppercase tracking-widest">Our story</span>
+          <span className="text-purple-500 text-sm font-semibold uppercase tracking-widest">Our story</span>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-white mt-3 tracking-tight leading-tight">
             A timeline of us
           </h1>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-paper-200 mt-4 max-w-2xl mx-auto leading-relaxed">
             The dates that matter, preserved in order. Past milestones are marked complete;
             what's still ahead waits gently in the future.
           </p>
         </div>
 
         <div className="relative">
-          <div className="absolute left-[calc(50%-1px)] top-0 bottom-0 w-px bg-white/10" />
+          <div className="absolute left-[calc(50%-1px)] top-0 bottom-0 w-px bg-purple-500/20" />
 
           {milestones.map((m, idx) => {
             const isPast = m.order <= 3;
@@ -59,17 +59,17 @@ export default async function OurStory() {
             const statusCls = isPast
               ? "inline-block mt-2.5 px-2.5 py-0.5 rounded-full text-[0.7rem] font-bold tracking-wider border bg-burgundy-500/10 border-burgundy-500/30 text-burgundy-400"
               : "inline-block mt-2.5 px-2.5 py-0.5 rounded-full text-[0.7rem] font-bold tracking-wider border bg-white/5 border-white/10 text-gray-500";
-            const textCls = isPast ? "text-burgundy-400" : "text-gray-500";
+            const textCls = isPast ? "text-burgundy-400" : "text-paper-200";
 
             return (
               <div key={m.id} className="relative mb-24 group flex items-start">
                 <div className="ml-1">
                   {!isFirst && (
-                    <div className="w-px h-[calc(100%-4rem)] bg-white/10" />
+                    <div className="w-px h-[calc(100%-4rem)] bg-purple-500/20" />
                   )}
                   <div className={markerCls} />
                   {!isLast && (
-                    <div className="w-px h-[calc(100%-4rem)] bg-white/10" />
+                    <div className="w-px h-[calc(100%-4rem)] bg-purple-500/20" />
                   )}
                 </div>
                 <div className="ml-3 flex-1">
@@ -77,7 +77,7 @@ export default async function OurStory() {
                     {new Date(m.date).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}
                   </time>
                   <h3 className="font-display text-xl md:text-2xl font-bold text-white mb-1">{m.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{m.description}</p>
+                  <p className="text-paper-200 text-sm leading-relaxed">{m.description}</p>
                   <span className={statusCls}>
                     {isPast ? "Remembered" : "Upcoming"}
                   </span>
@@ -88,10 +88,10 @@ export default async function OurStory() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col items-center gap-2 text-center">
-          <p className="text-xs text-gray-500 uppercase tracking-widest font-semibold">
+          <p className="text-xs text-purple-500/70 uppercase tracking-widest font-semibold">
             Original milestone dates are protected and cannot be changed.
           </p>
-          <p className="text-sm text-gray-400">Custom milestones can be added by either of us.</p>
+          <p className="text-sm text-paper-200">Custom milestones can be added by either of us.</p>
         </div>
       </div>
     </div>
